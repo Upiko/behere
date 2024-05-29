@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Events Page</title>
+</head>
+<body>
+    <h1>Events</h1>
+    <!-- Add your list of events here -->
+    <ul>
+        <li>Event 1</li>
+        <li>Event 2</li>
+        <li>Event 3</li>
+    </ul>
+    <button onclick="location.href='index.html'">Back to Main Page</button>
+</body>
+</html>

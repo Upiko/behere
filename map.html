@@ -38,12 +38,25 @@
             .bindPopup('გავიმარჯვებთ სახელოვნად!')
             .openPopup();
 
-        // Adjust map view to center the marker
-        map.setView(marker.getLatLng(), map.getZoom());
+        // Function to center the marker
+        function centerMarker() {
+            var mapCenter = map.getSize().divideBy(2);
+            var markerPoint = map.latLngToContainerPoint(marker.getLatLng());
+            var offset = markerPoint.subtract(mapCenter);
+            map.panBy(offset);
+        }
 
-        // Update map view on window resize
+        // Center the marker initially
+        centerMarker();
+
+        // Center the marker on map load
+        map.on('load', function () {
+            centerMarker();
+        });
+
+        // Center the marker on window resize
         window.addEventListener('resize', function() {
-            map.setView(marker.getLatLng(), map.getZoom());
+            centerMarker();
         });
     </script>
 </body>

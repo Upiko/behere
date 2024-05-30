@@ -17,6 +17,9 @@
     </style>
 </head>
 <body>
+    <!-- Add a back button -->
+    <a href="index.html">Back to Main Page</a>
+
     <!-- Your map content goes here -->
     
     <!-- Include Leaflet JavaScript -->
@@ -28,8 +31,8 @@
         // Initialize the map with specific location
         var map = L.map('map').setView([41.697026, 44.798944], 18); // Tbilisi
 
-        // Add a grayscale tile layer
-        L.tileLayer('https://tiles.wmflabs.org/bw-mapnik/{z}/{x}/{y}.png', {
+        // Add a tile layer
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         }).addTo(map);
 

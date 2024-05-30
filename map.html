@@ -3,75 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Live Map</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Map</title>
+    <!-- Include Leaflet CSS -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-    <style>
-        #mapContainer {
-            position: relative;
-            width: 600px;
-            height: 450px;
-            border: 1px solid #000;
-            margin: 0 auto;
-        }
-        #mapCanvas {
-            width: 100%;
-            height: 100%;
-            border: 1px solid #000;
-        }
-    </style>
 </head>
 <body>
-    <h1>Live Map</h1>
-    <div id="mapContainer">
-        <canvas id="mapCanvas"></canvas>
-    </div>
-    <button onclick="location.href='index.html'">Back to Main Page</button>
+    <!-- Your map content goes here -->
+    
+    <!-- Include Leaflet JavaScript -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
+    <div id="map" style="width: 600px; height: 400px;"></div>
+
     <script>
-        const canvas = document.getElementById('mapCanvas');
-        const ctx = canvas.getContext('2d');
+        // Initialize the map
+        var map = L.map('map').setView([51.505, -0.09], 13);
 
-        canvas.width = 600;
-        canvas.height = 450;
+        // Add a tile layer
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
 
-        let drawing = false;
-
-        function startPosition(e) {
-            drawing = true;
-            draw(e);
-        }
-
-        function endPosition() {
-            drawing = false;
-            ctx.beginPath();
-        }
-
-        function draw(e) {
-            if (!drawing) return;
-
-            ctx.lineWidth = 5;
-            ctx.lineCap = 'round';
-            ctx.strokeStyle = 'red';
-
-            ctx.lineTo(e.clientX - canvas.offsetLeft, e.clientY - canvas.offsetTop);
-            ctx.stroke();
-            ctx.beginPath();
-            ctx.moveTo(e.clientX - canvas.offsetLeft, e.clientY - canvas.offsetTop);
-        }
-
-        canvas.addEventListener('mousedown', startPosition);
-        canvas.addEventListener('mouseup', endPosition);
-        canvas.addEventListener('mousemove', draw);
-
-        // Clear the canvas
-        function clearCanvas() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-        }
-
-        // Example usage of clearCanvas function
-        document.getElementById('clearButton').addEventListener('click', clearCanvas);
+        // Add a marker
+        L.marker([51.5, -0.09]).addTo(map)
+            .bindPopup('A pretty CSS3 popup.<br> Easily customizable.')
+            .openPopup();
     </script>
-    <button id="clearButton">Clear</button>
 </body>
 </html>

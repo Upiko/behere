@@ -26,7 +26,7 @@
 
     <script>
         // Initialize the map
-        var map = L.map('map').setView([41.697026, 44.798944], 18); // Tbilisi 
+        var map = L.map('map'); // Tbilisi 
 
         // Add a tile layer
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -38,26 +38,8 @@
             .bindPopup('გავიმარჯვებთ სახელოვნად!')
             .openPopup();
 
-        // Function to center the marker
-        function centerMarker() {
-            var mapCenter = map.getSize().divideBy(2);
-            var markerPoint = map.latLngToContainerPoint(marker.getLatLng());
-            var offset = markerPoint.subtract(mapCenter);
-            map.panBy(offset);
-        }
-
-        // Center the marker initially
-        centerMarker();
-
-        // Center the marker on map load
-        map.on('load', function () {
-            centerMarker();
-        });
-
-        // Center the marker on window resize
-        window.addEventListener('resize', function() {
-            centerMarker();
-        });
+        // Set the map view to the marker's location
+        map.setView(marker.getLatLng(), 18); // 18 is the zoom level
     </script>
 </body>
 </html>

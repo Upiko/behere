@@ -29,7 +29,7 @@
 
     <script>
         // Initialize the map with specific location
-        var map = L.map('map').setView([41.697026, 44.798955], 17); // Tbilisi 
+        var map = L.map('map').setView([41.697026, 44.798944], 17); // Tbilisi 
 
         // Add a tile layer
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -37,8 +37,8 @@
         }).addTo(map);
 
         // Add a marker
-        L.marker([41.7151, 44.8271]).addTo(map)
-            .bindPopup('Tbilisi')
+        L.marker([41.697026, 44.798944]).addTo(map)
+            .bindPopup('გავიმარჯვებთ სახელოვნად')
             .openPopup();
     </script>
 </body>
